@@ -1,0 +1,42 @@
+{% extends 'main/index.html' %}
+    {% block content %}
+    
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="kol_vo">
+                    <input type="int" id="name" {% if summa %} value="{{ summa }}" {% endif %} name="summa" placeholder="введите суммму">
+                    
+                </div>
+
+
+                <div class="form-group col-md-4 mb-0">
+                    <label for="from_curr">Меняем</label>
+                    <select class="form-control" id="from_curr" name="from-curr" value="{{ from_curr }}">
+                        {% for curr in spisok %}
+                            <option value="{{ curr }}" {% if chto_menyaem == curr %}selected{% endif %}>{{ curr }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group col-md-4 mb-0">
+                    <label for="from_to">На</label>
+                    <select class="form-control" id="from_to" name="from-to" value="{{ from_to }}">
+                        {% for curr_to in spisok %}
+                            <option value="{{ curr_to }}" {% if na_chto_menyaem == curr_to %}selected{% endif %}>{{ curr_to }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="btn btn-primary">Рассчитать</button>
+                </div>
+                <div class="otvet">
+                    <label for="">                   
+                         {{summa}}
+                        {{na_chto_menyaem}}
+                        {{chto_menyaem}} 
+                        {{otvet}}
+                    </label>
+
+                </div>
+            </form>
+
+
+    {% endblock %}
